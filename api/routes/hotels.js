@@ -47,13 +47,12 @@ router.get("/:id", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-    try {
-      const hotels = await Hotel.find(req.params.id);
-      res.status(200).json(hotels);
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  });
-
+  try {
+    const hotels = await Hotel.find(req.params.id);
+    res.status(200).json(hotels);
+  } catch (error) {
+    next(error);
+  }
+});
 
 export default router;
